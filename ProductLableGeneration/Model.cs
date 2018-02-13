@@ -46,6 +46,8 @@ namespace ProductLableGeneration
 
         public string QuantityForOneContainer { get; set; }
 
+        public string Dock { get; set; }
+
     }
 
     public class Label

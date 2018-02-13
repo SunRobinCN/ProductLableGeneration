@@ -289,7 +289,7 @@ namespace ProductLableGeneration
 
         private void softwareVersionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(@"Version 1.0", @"Software Version");
+            MessageBox.Show(@"Version 3.0 --- Modify the font size", @"Software Version");
         }
 
         private void contactMeToolStripMenuItem_Click(object sender, EventArgs e)
