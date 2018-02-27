@@ -46,6 +46,8 @@ namespace ProductLableGeneration
 
         public string QuantityForOneContainer { get; set; }
 
+        public string Dock { get; set; }
+
     }
 
     public class Label
@@ -62,9 +64,6 @@ namespace ProductLableGeneration
 
         public string TotalAmount { get; set; }
 
-        public string Dock { get; set; }
-
-        public string LogisticRefer { get; set; }
     }
 
 }

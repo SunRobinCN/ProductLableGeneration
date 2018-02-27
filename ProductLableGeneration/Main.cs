@@ -152,19 +152,6 @@ namespace ProductLableGeneration
                 MessageBox.Show("You batch number is not in right format!");
                 return false;
             }
-
-            if (this.txtDockGate.Text.Trim() == "")
-            {
-                MessageBox.Show(@"Dock/Gate is mandatory!", @"Input Error!");
-                return false;
-            }
-
-            if (this.txtLogisticRefer.Text.Trim() == "")
-            {
-                MessageBox.Show(@"Logistic reference is mandatory!", @"Input Error!");
-                return false;
-            }
-
             return true;
         }
 
@@ -220,8 +207,6 @@ namespace ProductLableGeneration
             int startSerialNumberInt = 1;
             int endSerialNumberInt = Convert.ToInt32(batchQuantity);
             string labelDate = this.txtDate.Text;
-            string dockGate = this.txtDockGate.Text.Trim();
-            string logisticRefer = this.txtLogisticRefer.Text.Trim();
             Dictionary<string, List<Label>> dic = new Dictionary<string, List<Label>>();
             int count = 1;
             for (int i = startBatchNumberInt; i <= endBatchNumberInt; i++)
@@ -248,12 +233,10 @@ namespace ProductLableGeneration
                         QuantityDown = SelectedProduct.QuantityDown,
                         Receiver = SelectedProduct.Receiver,
                         SupplierAddress = SelectedProduct.SupplierAddress,
-                        SupplierCode = SelectedProduct.SupplierCode,
+                        SupplierCode = SelectedProduct.SupplierCode
                     };
                     label.Product = p;
                     label.Date = labelDate;
-                    label.Dock = dockGate;
-                    label.LogisticRefer = logisticRefer;
                     label.BatchNumber = i.ToString();
                     label.SerialNumber = startBatchDate + j.ToString("D3");
                     label.TotalAmount = this.txtQantityInAll.Text;
