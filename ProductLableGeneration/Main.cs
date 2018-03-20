@@ -207,6 +207,7 @@ namespace ProductLableGeneration
             int startSerialNumberInt = 1;
             int endSerialNumberInt = Convert.ToInt32(batchQuantity);
             string labelDate = this.txtDate.Text;
+            string dock = this.txtDock.Text;
             Dictionary<string, List<Label>> dic = new Dictionary<string, List<Label>>();
             int count = 1;
             for (int i = startBatchNumberInt; i <= endBatchNumberInt; i++)
@@ -233,7 +234,8 @@ namespace ProductLableGeneration
                         QuantityDown = SelectedProduct.QuantityDown,
                         Receiver = SelectedProduct.Receiver,
                         SupplierAddress = SelectedProduct.SupplierAddress,
-                        SupplierCode = SelectedProduct.SupplierCode
+                        SupplierCode = SelectedProduct.SupplierCode,
+                        Dock = dock
                     };
                     label.Product = p;
                     label.Date = labelDate;
