@@ -23,7 +23,7 @@ namespace ProductLableGeneration
 
         private const float ReceiverFontSize = 0.5f * UNIT;
         private const float DockGateFontSize = 0.6f * UNIT;
-        private const float SupplierCompanyFontSize = 0.6f * UNIT;
+        private const float SupplierCompanyFontSize = 0.5f * UNIT;
         private const float GrossWeightAndBoxFontSize = 0.6f * UNIT;
         private const float PartNumberFontSize = 1.2f * UNIT;
         private const float QuantityFontSize = 1.3f * UNIT;

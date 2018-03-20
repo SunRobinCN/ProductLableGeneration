@@ -14,12 +14,12 @@ namespace ProductLableGeneration
         [STAThread]
         static void Main()
         {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Main());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Main());
 
-            PDFGenerator _pdf = new PDFGenerator();
-            _pdf.Excecute();
+            //PDFGenerator _pdf = new PDFGenerator();
+            //_pdf.Excecute();
         }
     }
 }
