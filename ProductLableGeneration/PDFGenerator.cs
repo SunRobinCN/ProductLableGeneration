@@ -25,8 +25,8 @@ namespace ProductLableGeneration
         private const float DockGateFontSize = 0.6f * UNIT;
         private const float SupplierCompanyFontSize = 0.5f * UNIT;
         private const float GrossWeightAndBoxFontSize = 0.6f * UNIT;
-        private const float PartNumberFontSize = 1.2f * UNIT;
-        private const float QuantityFontSize = 1.3f * UNIT;
+        private const float PartNumberFontSize = 0.9f * UNIT;
+        private const float QuantityFontSize = 0.9f * UNIT;
         private const float DescriptionFontSize = 0.5f * UNIT;
         private const float SupplierCodeFontSize = 0.5f * UNIT;
         private const float LogisticsReferenceFontSize = 0.7f * UNIT;
@@ -246,7 +246,7 @@ namespace ProductLableGeneration
 
                 doc.Add(table1);
 
-                var table2 = new PdfPTable(11);
+                var table2 = new PdfPTable(12);
                 table2.DefaultCell.Border = 0;
                 table2.WidthPercentage = 100.2f;
                 table2.DefaultCell.FixedHeight = HEIGHTFORTABLE2;
@@ -279,7 +279,7 @@ namespace ProductLableGeneration
                 cell32.BorderWidthLeft = 0;
                 cell32.BorderWidthRight = 0;
                 cell32.BorderWidthBottom = 0;
-                cell32.Colspan = 3;
+                cell32.Colspan = 4;
                 cell32.Rowspan = 1;
                 cell32.PaddingTop = 13f;
                 cell32.PaddingLeft = 0;
