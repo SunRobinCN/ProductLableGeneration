@@ -77,6 +77,7 @@ namespace ProductLableGeneration
                 this.txtSupplierCode.Text = product.SupplierCode;
                 this.txtSupplierAddress.Text = product.SupplierAddress;
                 this.txtEnginerringChange.Text = product.EngineeringChange;
+                this.txtLogisticRefer.Text = product.QuantityForOneContainer;
             }
         }
 
@@ -245,6 +246,7 @@ namespace ProductLableGeneration
                     label.FixedQuantity = j % 2 == 0 ? label.Product.QuantityDown : label.Product.QuantiryUp;
                     label.Product.NetWeight = j % 2 == 0 ? label.Product.NetWeightDown : label.Product.NetWeightUp;
                     label.Product.GrossWeight = j % 2 == 0 ? label.Product.GrossWeightDown : label.Product.GrossWeightUp;
+                    label.LogisticRefer = this.txtLogisticRefer.Text.Trim();
                     list.Add(label);
                 }
                 dic.Add(filePath, list);

@@ -64,6 +64,7 @@ namespace ProductLableGeneration
 
         public string TotalAmount { get; set; }
 
+        public string LogisticRefer { get; set; }
     }
 
 }

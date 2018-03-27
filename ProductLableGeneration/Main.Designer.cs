@@ -60,6 +60,8 @@
             this.lableQuantityDown = new System.Windows.Forms.Label();
             this.labelGrossWTDOWN = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtDock = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtGrossWTUP = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -67,6 +69,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtPartNumber = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtLogisticRefer = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.txtQantityInAll = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -83,11 +87,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtBatchDate = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtDock = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -124,21 +128,21 @@
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.editToolStripMenuItem.Text = "Add";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem1
             // 
             this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
-            this.editToolStripMenuItem1.Size = new System.Drawing.Size(137, 26);
+            this.editToolStripMenuItem1.Size = new System.Drawing.Size(152, 26);
             this.editToolStripMenuItem1.Text = "Edit";
             this.editToolStripMenuItem1.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
             // 
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
@@ -399,10 +403,27 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox1.Location = new System.Drawing.Point(31, 40);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(545, 456);
+            this.groupBox1.Size = new System.Drawing.Size(545, 529);
             this.groupBox1.TabIndex = 41;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "PRODUCT";
+            // 
+            // txtDock
+            // 
+            this.txtDock.Location = new System.Drawing.Point(244, 404);
+            this.txtDock.Name = "txtDock";
+            this.txtDock.Size = new System.Drawing.Size(282, 26);
+            this.txtDock.TabIndex = 48;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label6.Location = new System.Drawing.Point(20, 404);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(110, 20);
+            this.label6.TabIndex = 47;
+            this.label6.Text = "DOCK/GATE :";
             // 
             // label3
             // 
@@ -478,10 +499,27 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox2.Location = new System.Drawing.Point(582, 40);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(386, 424);
+            this.groupBox2.Size = new System.Drawing.Size(386, 414);
             this.groupBox2.TabIndex = 42;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "USER INPUT";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.Location = new System.Drawing.Point(23, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(192, 20);
+            this.label7.TabIndex = 57;
+            this.label7.Text = "LOGISTIC REFERENCE:";
+            // 
+            // txtLogisticRefer
+            // 
+            this.txtLogisticRefer.Location = new System.Drawing.Point(27, 56);
+            this.txtLogisticRefer.Name = "txtLogisticRefer";
+            this.txtLogisticRefer.Size = new System.Drawing.Size(327, 26);
+            this.txtLogisticRefer.TabIndex = 56;
             // 
             // label20
             // 
@@ -539,7 +577,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(30, 364);
+            this.button2.Location = new System.Drawing.Point(27, 369);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(327, 28);
             this.button2.TabIndex = 8;
@@ -551,7 +589,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(26, 333);
+            this.label15.Location = new System.Drawing.Point(23, 338);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(288, 20);
             this.label15.TabIndex = 47;
@@ -559,7 +597,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(272, 291);
+            this.button1.Location = new System.Drawing.Point(269, 301);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(85, 28);
             this.button1.TabIndex = 7;
@@ -569,7 +607,7 @@
             // 
             // txtFilePath
             // 
-            this.txtFilePath.Location = new System.Drawing.Point(30, 295);
+            this.txtFilePath.Location = new System.Drawing.Point(27, 300);
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.ReadOnly = true;
             this.txtFilePath.Size = new System.Drawing.Size(236, 26);
@@ -579,7 +617,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label14.Location = new System.Drawing.Point(26, 265);
+            this.label14.Location = new System.Drawing.Point(23, 270);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(191, 20);
             this.label14.TabIndex = 45;
@@ -620,28 +658,24 @@
             this.txtBatchDate.Size = new System.Drawing.Size(167, 26);
             this.txtBatchDate.TabIndex = 2;
             // 
-            // label6
+            // groupBox3
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(20, 404);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(110, 20);
-            this.label6.TabIndex = 47;
-            this.label6.Text = "DOCK/GATE :";
-            // 
-            // txtDock
-            // 
-            this.txtDock.Location = new System.Drawing.Point(244, 404);
-            this.txtDock.Name = "txtDock";
-            this.txtDock.Size = new System.Drawing.Size(282, 26);
-            this.txtDock.TabIndex = 48;
+            this.groupBox3.Controls.Add(this.txtLogisticRefer);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox3.Location = new System.Drawing.Point(582, 463);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(372, 106);
+            this.groupBox3.TabIndex = 56;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "USER INPUT";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(990, 526);
+            this.ClientSize = new System.Drawing.Size(990, 608);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
@@ -660,6 +694,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -724,6 +760,9 @@
         private System.Windows.Forms.TextBox txtNETWTUP;
         private System.Windows.Forms.TextBox txtDock;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtLogisticRefer;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
 

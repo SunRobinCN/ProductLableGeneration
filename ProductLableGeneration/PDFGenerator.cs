@@ -29,7 +29,7 @@ namespace ProductLableGeneration
         private const float QuantityFontSize = 0.9f * UNIT;
         private const float DescriptionFontSize = 0.5f * UNIT;
         private const float SupplierCodeFontSize = 0.5f * UNIT;
-        private const float LogisticsReferenceFontSize = 0.7f * UNIT;
+        private const float LogisticsReferenceFontSize = 0.48f * UNIT;
         //Date of manufacture, shipment or expire date
         private const float ShipmentFontSize = 0.5f * UNIT;
         private const float ChangeNumberFontSize = 0.5f * UNIT;
@@ -58,13 +58,14 @@ namespace ProductLableGeneration
                     GrossWeight = "307",
                     Boxes = "1",
                     Description = "Aolly Wheel",
-                    Dock = "Dock1"
+                    Dock = "Dock1",
                 },
                 FixedQuantity = 30.ToString(),
                 Date = "D140203",
                 SerialNumber = "20140131001",
                 BatchNumber = "201401311",
-                TotalAmount = "1056"
+                TotalAmount = "1056",
+                LogisticRefer = "1026"
             });
             list.Add(new Label
             {
@@ -88,7 +89,8 @@ namespace ProductLableGeneration
                 Date = "D140203",
                 SerialNumber = "20140131001",
                 BatchNumber = "201401311",
-                TotalAmount = "1056"
+                TotalAmount = "1056",
+                LogisticRefer = "1026"
             });
             Excecute(path, list);
         }
@@ -133,9 +135,9 @@ namespace ProductLableGeneration
 
                 var cell11 = new PdfPCell();
                 cell11.Colspan = 1;
-                var p = new Paragraph("RECEIVER:",
+                var p = new Paragraph("(STABILIMENTO DI DESTINAZIONE)\r\nRECEIVER:",
                     FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
-                p.SetLeading(0, 0.7f);
+                p.SetLeading(0, 1.0f);
                 cell11.AddElement(p);
                 p = new Paragraph(label.Product.Receiver,
                     FontFactory.GetFont("Helvetica", ReceiverFontSize, BaseColor.BLACK));
@@ -148,11 +150,11 @@ namespace ProductLableGeneration
 
                 var cell12 = new PdfPCell();
                 cell12.Colspan = 1;
-                p = new Paragraph("DOCK/GATE",
+                p = new Paragraph("(PUNTO DI RIFORNIMENTO)\r\nDOCK/GATE",
                     FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.7f);
+                p.SetLeading(0, 1.0f);
                 cell12.AddElement(p);
                 p = new Paragraph(label.Product.Dock,
                     FontFactory.GetFont("Helvetica", DockGateFontSize, BaseColor.BLACK));
@@ -164,8 +166,10 @@ namespace ProductLableGeneration
                 table1.AddCell(cell12);
 
                 var cell21 = new PdfPCell();
-                cell21.AddElement(new Paragraph("DOCUMENT NUMBER NO",
-                    FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK)));
+                p = new Paragraph("(NUMERO INTERNO B.A.M.)\r\nDOCUMENT NUMBER NO",
+                    FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
+                p.SetLeading(0, 1.0f);
+                cell21.AddElement(p);
                 cell21.VerticalAlignment = Element.ALIGN_LEFT;
                 cell21.Rowspan = 2;
                 table1.AddCell(cell21);
@@ -180,11 +184,11 @@ namespace ProductLableGeneration
                 cell22_11.BorderWidthLeft = 0;
                 cell22_11.BorderWidthBottom = 0;
                 cell22_11.Colspan = 3;
-                p = new Paragraph("SUPPLIER ADDRESS",
+                p = new Paragraph("(RAGIONE SOCIALE DEL FORNITORE)\r\nSUPPLIER ADDRESS",
                     FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.7f);
+                p.SetLeading(0, 1.0f);
                 cell22_11.AddElement(p);
                 p = new Paragraph(label.Product.SupplierAddress,
                     FontFactory.GetFont("Helvetica", SupplierCompanyFontSize, BaseColor.BLACK));
@@ -195,11 +199,11 @@ namespace ProductLableGeneration
                 innerTable.AddCell(cell22_11);
                 var cell22_21 = new PdfPCell();
                 cell22_21.Colspan = 1;
-                p = new Paragraph("NET WT (kg)",
+                p = new Paragraph("(MASSA NETTA)\r\nNET WT (kg)",
                     FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.7f);
+                p.SetLeading(0, 1.0f);
                 cell22_21.AddElement(p);
                 p = new Paragraph(label.Product.NetWeight,
                     FontFactory.GetFont("Helvetica", GrossWeightAndBoxFontSize, BaseColor.BLACK));
@@ -211,11 +215,11 @@ namespace ProductLableGeneration
                 innerTable.AddCell(cell22_21);
                 var cell22_22 = new PdfPCell();
                 cell22_22.Colspan = 1;
-                p = new Paragraph("GROSS WT (kg)",
+                p = new Paragraph("(MASSA LORDA)\r\nGROSS WT (kg)",
                     FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.7f);
+                p.SetLeading(0, 1.0f);
                 cell22_22.AddElement(p);
                 p = new Paragraph(label.Product.GrossWeight,
                     FontFactory.GetFont("Helvetica", GrossWeightAndBoxFontSize, BaseColor.BLACK));
@@ -227,11 +231,11 @@ namespace ProductLableGeneration
                 innerTable.AddCell(cell22_22);
                 var cell22_23 = new PdfPCell();
                 cell22_23.Colspan = 1;
-                p = new Paragraph("NO BOXES",
+                p = new Paragraph("(Q.TA CONTENITORI)\r\nNO BOXES",
                     FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.7f);
+                p.SetLeading(0, 1.0f);
                 cell22_23.AddElement(p);
                 p = new Paragraph(label.Product.Boxes,
                     FontFactory.GetFont("Helvetica", GrossWeightAndBoxFontSize, BaseColor.BLACK));
@@ -256,11 +260,11 @@ namespace ProductLableGeneration
                 cell31.Colspan = 6;
                 cell31.Rowspan = 1;
                 cell31.VerticalAlignment = Element.ALIGN_MIDDLE;
-                p = new Paragraph("PART NUMBER (P)", FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
+                p = new Paragraph("(NUMERO DISEGNO/SIMBOLO)\r\nPART NUMBER (P)", FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
                 p.IndentationLeft = -7f;
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.7f);
+                p.SetLeading(0, 1.0f);
                 cell31.AddElement(p);
                 cell31.PaddingLeft = 10;
                 cell31.BorderWidthRight = 0;
@@ -312,11 +316,11 @@ namespace ProductLableGeneration
                 cell41_1.Colspan = 1;
                 cell41_1.Rowspan = 1;
                 cell41_1.BorderWidth = 0;
-                p = new Paragraph("QUANTITY (Q)", FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
+                p = new Paragraph("(QUANTITANEL CONTENITORE)\r\nQUANTITY (Q)", FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
                 p.IndentationLeft = -7f;
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.7f);
+                p.SetLeading(0, 1.0f);
                 cell41_1.AddElement(p);
                 p = new Paragraph(label.FixedQuantity,
                     FontFactory.GetFont("Helvetica", QuantityFontSize, BaseColor.BLACK));
@@ -342,14 +346,15 @@ namespace ProductLableGeneration
                 var cell42_1 = new PdfPCell();
                 cell42_1.Colspan = 2;
                 cell42_1.Rowspan = 1;
-                p = new Paragraph("DESCRIPTION", FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
-                p.SetLeading(0, 0.7f);
+                p = new Paragraph("(DENOMINAZIONE DEL PRODOTTO)\r\nDESCRIPTION", FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
+                p.SetLeading(0, 1.0f);
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
                 cell42_1.AddElement(p);
                 p = new Paragraph(label.Product.Description,
                     FontFactory.GetFont("Helvetica", DescriptionFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 0;
+                p.SetLeading(0, 0.8f);
                 p.SpacingBefore = -3;
                 cell42_1.VerticalAlignment = Element.ALIGN_LEFT;
                 cell42_1.AddElement(p);
@@ -361,44 +366,48 @@ namespace ProductLableGeneration
                 cell42_2.BorderWidthTop = 0;
                 cell42_2.Colspan = 2;
                 cell42_2.Rowspan = 2;
-                p = new Paragraph("LOGISTIC REFERNCE",
+                p = new Paragraph("(DATI DI LOGISTICA)\r\nLOGISTIC REFERNCE",
                     FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.7f);
+                p.SetLeading(0, 1.0f);
                 cell42_2.AddElement(p);
-                p = new Paragraph("     ", FontFactory.GetFont("Helvetica", LogisticsReferenceFontSize, BaseColor.BLACK));
-                p.SpacingAfter = 1;
-                p.SpacingAfter = 8;
+                p = new Paragraph(label.LogisticRefer, FontFactory.GetFont("Helvetica", LogisticsReferenceFontSize, BaseColor.BLACK));
+                p.SpacingAfter = 0;
+                p.SetLeading(0, 0.8f);
+                p.SpacingAfter = 0;
+
                 cell42_2.VerticalAlignment = Element.ALIGN_LEFT;
                 cell42_2.AddElement(p);
                 interTable42.AddCell(cell42_2);
                 var cell42_3 = new PdfPCell();
                 cell42_3.Colspan = 1;
                 cell42_3.Rowspan = 1;
-                p = new Paragraph("DATE",
+                p = new Paragraph("(DATA)\r\nDATE",
                     FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.7f);
+                p.SetLeading(0, 1.0f);
                 cell42_3.AddElement(p);
                 p = new Paragraph(label.Date, FontFactory.GetFont("Helvetica", ShipmentFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 1;
                 cell42_3.VerticalAlignment = Element.ALIGN_LEFT;
+                p.SetLeading(0, 0.8f);
                 cell42_3.AddElement(p);
                 interTable42.AddCell(cell42_3);
                 var cell42_32 = new PdfPCell();
                 cell42_32.Colspan = 1;
                 cell42_32.Rowspan = 1;
-                p = new Paragraph("ENGINERING CHANGE",
+                p = new Paragraph("(NUMERO DIMODIFICA)\r\nENGINERING CHANGE",
                     FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.7f);
+                p.SetLeading(0, 1.0f);
                 cell42_32.AddElement(p);
                 p = new Paragraph(label.Product.EngineeringChange,
                     FontFactory.GetFont("Helvetica", ChangeNumberFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 1;
+                p.SetLeading(0, 0.8f);
                 cell42_32.VerticalAlignment = Element.ALIGN_LEFT;
                 cell42_32.AddElement(p);
                 interTable42.AddCell(cell42_32);
@@ -409,15 +418,16 @@ namespace ProductLableGeneration
                 cell42_4.BorderWidthTop = 0;
                 cell42_4.Colspan = 2;
                 cell42_4.Rowspan = 2;
-                p = new Paragraph("BATCH NUMBER (H)", FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
+                p = new Paragraph("(NUMERO LOTTO DI PRODUZIONE)\r\nBATCH NUMBER (H)", FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.7f);
+                p.SetLeading(0, 1.0f);
                 p.IndentationLeft = 0f;
                 cell42_4.AddElement(p);
                 cell42_4.VerticalAlignment = Element.ALIGN_LEFT;
                 p = new Paragraph(label.BatchNumber, FontFactory.GetFont("Helvetica", BatchNumberFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 0;
+                p.SetLeading(0, 0.8f);
                 p.IndentationLeft = 150f;
                 cell42_4.VerticalAlignment = Element.ALIGN_MIDDLE;
                 cell42_4.AddElement(p);
@@ -433,28 +443,30 @@ namespace ProductLableGeneration
                 var A_Left_1 = new PdfPCell();
                 A_Left_1.Colspan = 1;
                 A_Left_1.Rowspan = 1;
-                p = new Paragraph("SUPPLIER CODE (V)",
+                p = new Paragraph("(CODICE FORNITORE)\r\nSUPPLIER CODE (V)",
                     FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.7f);
+                p.SetLeading(0, 1.0f);
                 A_Left_1.AddElement(p);
                 p = new Paragraph(label.Product.SupplierCode,
                     FontFactory.GetFont("Helvetica", SupplierCodeFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 10;
+                p.SetLeading(0, 0.8f);
                 A_Left_1.AddElement(p);
                 innerTableA_Left.AddCell(A_Left_1);
                 var A_Left_2 = new PdfPCell();
                 A_Left_2.Colspan = 1;
                 A_Left_2.Rowspan = 1;
-                p = new Paragraph("SERIAL NUMBER (M)",
+                p = new Paragraph("(NUMERO DELLA SCHEDA)\r\nSERIAL NUMBER (M)",
                     FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.7f);
+                p.SetLeading(0, 1.0f);
                 A_Left_2.AddElement(p);
                 p = new Paragraph(label.SerialNumber, FontFactory.GetFont("Helvetica", SerialNumberFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 0;
+                p.SetLeading(0, 0.8f);
                 A_Left_2.AddElement(p);
                 innerTableA_Left.AddCell(A_Left_2);
                 var cellA_Left = new PdfPCell(innerTableA_Left);
