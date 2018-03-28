@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Font = iTextSharp.text.Font;
 using Image = iTextSharp.text.Image;
 
 namespace ProductLableGeneration
@@ -13,7 +14,6 @@ namespace ProductLableGeneration
     public class PDFGenerator
     {
         private const float TITLE_FONT_SIZE = 7;
-        private const int CONTENT_FONT_SIZE = 14;
         // 1cm = 37.7777878f
         private const float UNIT = 40.9367701f;
 
@@ -25,8 +25,8 @@ namespace ProductLableGeneration
         private const float DockGateFontSize = 0.6f * UNIT;
         private const float SupplierCompanyFontSize = 0.5f * UNIT;
         private const float GrossWeightAndBoxFontSize = 0.6f * UNIT;
-        private const float PartNumberFontSize = 0.9f * UNIT;
-        private const float QuantityFontSize = 0.9f * UNIT;
+        private const float PartNumberFontSize = 1.1f * UNIT;
+        private const float QuantityFontSize = 1.1f * UNIT;
         private const float DescriptionFontSize = 0.5f * UNIT;
         private const float SupplierCodeFontSize = 0.5f * UNIT;
         private const float LogisticsReferenceFontSize = 0.48f * UNIT;
@@ -35,7 +35,6 @@ namespace ProductLableGeneration
         private const float ChangeNumberFontSize = 0.5f * UNIT;
         private const float SerialNumberFontSize = 0.5f * UNIT;
         private const float BatchNumberFontSize = 0.5f * UNIT;
-        private const float QrCodeFontSize = 4f * UNIT;
 
 
         public void Excecute()
@@ -111,6 +110,7 @@ namespace ProductLableGeneration
             var doc = new Document(PageSize.A4);
             var output = new FileStream(path, FileMode.Create);
             var writer = PdfWriter.GetInstance(doc, output);
+            Font labelBraceFont = FontFactory.GetFont("Verdana", 7f, Font.BOLD);
             doc.Open();
 
             for (var i = 0; i < list.Count; i++)
@@ -168,6 +168,8 @@ namespace ProductLableGeneration
                 var cell21 = new PdfPCell();
                 p = new Paragraph("(NUMERO INTERNO B.A.M.)\r\nDOCUMENT NUMBER NO",
                     FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
+                Phrase r = new Phrase("      (N)", labelBraceFont);
+                p.Add(r);
                 p.SetLeading(0, 1.0f);
                 cell21.AddElement(p);
                 cell21.VerticalAlignment = Element.ALIGN_LEFT;
@@ -257,10 +259,12 @@ namespace ProductLableGeneration
                 var cell31 = new PdfPCell();
                 cell31.BorderWidthTop = 0;
                 cell31.BorderWidthBottom = 0;
-                cell31.Colspan = 6;
+                cell31.Colspan = 7;
                 cell31.Rowspan = 1;
                 cell31.VerticalAlignment = Element.ALIGN_MIDDLE;
-                p = new Paragraph("(NUMERO DISEGNO/SIMBOLO)\r\nPART NUMBER (P)", FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
+                p = new Paragraph("(NUMERO DISEGNO/SIMBOLO)\r\nPART NUMBER", FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
+                r = new Phrase("      (P)", labelBraceFont);
+                p.Add(r);
                 p.IndentationLeft = -7f;
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
@@ -283,7 +287,7 @@ namespace ProductLableGeneration
                 cell32.BorderWidthLeft = 0;
                 cell32.BorderWidthRight = 0;
                 cell32.BorderWidthBottom = 0;
-                cell32.Colspan = 4;
+                cell32.Colspan = 3;
                 cell32.Rowspan = 1;
                 cell32.PaddingTop = 13f;
                 cell32.PaddingLeft = 0;
@@ -316,7 +320,9 @@ namespace ProductLableGeneration
                 cell41_1.Colspan = 1;
                 cell41_1.Rowspan = 1;
                 cell41_1.BorderWidth = 0;
-                p = new Paragraph("(QUANTITANEL CONTENITORE)\r\nQUANTITY (Q)", FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
+                p = new Paragraph("(QUANTITANEL CONTENITORE)\r\nQUANTITY", FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
+                r = new Phrase("      (Q)", labelBraceFont);
+                p.Add(r);
                 p.IndentationLeft = -7f;
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
@@ -418,7 +424,9 @@ namespace ProductLableGeneration
                 cell42_4.BorderWidthTop = 0;
                 cell42_4.Colspan = 2;
                 cell42_4.Rowspan = 2;
-                p = new Paragraph("(NUMERO LOTTO DI PRODUZIONE)\r\nBATCH NUMBER (H)", FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
+                p = new Paragraph("(NUMERO LOTTO DI PRODUZIONE)\r\nBATCH NUMBER", FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
+                r = new Phrase("      (H)", labelBraceFont);
+                p.Add(r);
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
                 p.SetLeading(0, 1.0f);
@@ -443,8 +451,10 @@ namespace ProductLableGeneration
                 var A_Left_1 = new PdfPCell();
                 A_Left_1.Colspan = 1;
                 A_Left_1.Rowspan = 1;
-                p = new Paragraph("(CODICE FORNITORE)\r\nSUPPLIER CODE (V)",
+                p = new Paragraph("(CODICE FORNITORE)\r\nSUPPLIER CODE",
                     FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
+                r = new Phrase("      (V)", labelBraceFont);
+                p.Add(r);
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
                 p.SetLeading(0, 1.0f);
@@ -458,15 +468,17 @@ namespace ProductLableGeneration
                 var A_Left_2 = new PdfPCell();
                 A_Left_2.Colspan = 1;
                 A_Left_2.Rowspan = 1;
-                p = new Paragraph("(NUMERO DELLA SCHEDA)\r\nSERIAL NUMBER (M)",
+                p = new Paragraph("(NUMERO DELLA SCHEDA)\r\nSERIAL NUMBER",
                     FontFactory.GetFont("Helvetica", TITLE_FONT_SIZE, BaseColor.BLACK));
+                r = new Phrase("      (S)/(M)", labelBraceFont);
+                p.Add(r);
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
                 p.SetLeading(0, 1.0f);
                 A_Left_2.AddElement(p);
-                p = new Paragraph(label.SerialNumber, FontFactory.GetFont("Helvetica", SerialNumberFontSize, BaseColor.BLACK));
+                p = new Paragraph("S"+label.SerialNumber, FontFactory.GetFont("Helvetica", SerialNumberFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 0;
-                p.SetLeading(0, 0.8f);
+                p.SetLeading(0, 1f);
                 A_Left_2.AddElement(p);
                 innerTableA_Left.AddCell(A_Left_2);
                 var cellA_Left = new PdfPCell(innerTableA_Left);
