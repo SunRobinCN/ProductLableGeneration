@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using ZXing;
+using ZXing.Common;
 using Font = iTextSharp.text.Font;
 using Image = iTextSharp.text.Image;
+using Rectangle = iTextSharp.text.Rectangle;
 
 namespace ProductLableGeneration
 {
@@ -120,7 +124,8 @@ namespace ProductLableGeneration
                     doc.NewPage();
                 }
                 var label = list[i];
-                var imagePartNumberPDF417Code = GeneratePDF417BarCode(label.Product.PartNumber + "P");
+                PdfContentByte cb = writer.DirectContent;
+                var imagePartNumberPDF417Code = GeneratePDF417BarCode(cb, label.Product.PartNumber + "P");
 
                 var table1 = new PdfPTable(2);
                 table1.SpacingBefore = 10;
@@ -289,8 +294,8 @@ namespace ProductLableGeneration
                 cell32.BorderWidthBottom = 0;
                 cell32.Colspan = 3;
                 cell32.Rowspan = 1;
-                cell32.PaddingTop = 13f;
-                cell32.PaddingLeft = 0;
+                cell32.PaddingTop = 10f;
+                cell32.PaddingLeft = -25f;
                 cell32.HorizontalAlignment = Element.ALIGN_LEFT;
                 cell32.AddElement(imagePartNumberPDF417Code);
 
@@ -595,15 +600,37 @@ namespace ProductLableGeneration
         }
 
 
-        public Image GeneratePDF417BarCode(string data)
+        public Image GeneratePDF417BarCode(PdfContentByte cb, string data)
         {
-            BarcodePDF417 barcodePdf417 = new BarcodePDF417();
-            barcodePdf417.SetText(data);
-            //barcodePdf417.YHeight = 0.1f;
-            //barcodePdf417.AspectRatio = 2.5f;
-            Image image = barcodePdf417.GetImage();
-            //image.ScaleAbsoluteHeight(UNIT * 13f);
-            //image.ScaleAbsoluteWidth(UNIT * 1.3f);
+            //BarcodePDF417 barcodePdf417 = new BarcodePDF417();
+            //barcodePdf417.CodeColumns = 20;
+            //barcodePdf417.CodeRows = 1;
+            //barcodePdf417.SetText(data);
+            //Image image = barcodePdf417.GetImage();
+            //return image;
+            //BarcodePDF417 barcodePdf417 = new BarcodePDF417();
+            //barcodePdf417.AspectRatio = 4f / 3f;
+            //barcodePdf417.SetText(data);
+            //Rectangle size = barcodePdf417.GetBarcodeSize();
+            //PdfTemplate template = cb.CreateTemplate(size.Height, size.Width);
+            //barcodePdf417.PlaceBarcode(template, BaseColor.BLACK, 1, 1);
+            //Image image = barcodePdf417.GetImage();
+
+            //image.XYRatio = 4f / 3f;
+            //image.ScaleAbsoluteHeight(UNIT * 1.8f);
+            //image.ScaleAbsoluteWidth(5f * UNIT);
+            //return image;
+
+            var writer = new BarcodeWriter
+            {
+                Format = BarcodeFormat.PDF_417,
+                Options = new EncodingOptions { Width = 500, Height = 210, Margin = 0} //optional
+            };
+            var imgBitmap = writer.Write(data);
+            imgBitmap.Save("xxx.png", ImageFormat.Png);
+            Image image = iTextSharp.text.Image.GetInstance("xxx.png");
+            //image.ScaleAbsolute(UNIT * 4f, UNIT * 3f);
+            image.ScalePercent(25f);
             return image;
         }
 
