@@ -178,11 +178,12 @@ namespace ProductLableGeneration
                     MessageBox.Show(@"You don't have enough access to put file in the selected folder!", @"Acess Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                catch (System.IO.IOException)
+                catch (System.IO.IOException exc)
                 {
                     MessageBox.Show(@"There is an exsited file with the same name in the destination folder!",
                         @"Acess Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(exc.Message);
                 }
                 catch (Exception exception)
                 {
