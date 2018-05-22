@@ -19,21 +19,21 @@ namespace ProductLableGeneration
     {
         private const float TITLE_FONT_SIZE = 7;
         // 1cm = 37.7777878f
-        private const float UNIT = 40.9367701f;
+        private const float UNIT = 38.2f;
 
-        private const float HEIGHTFORTABLE1 = 30f;
-        private const float HEIGHTFORTABLE2 = 30f;
-        private const float HEIGHTFORTABLE3 = 30f;
+        //private const float Heightfortable1 = 49 * UNIT;
+        //private const float Heightfortable2 = 49 * UNIT;
+        //private const float Heightfortable3 = 49 * UNIT;
 
         private const float ReceiverFontSize = 0.5f * UNIT;
-        private const float DockGateFontSize = 0.6f * UNIT;
-        private const float SupplierCompanyFontSize = 0.5f * UNIT;
+        private const float DockGateFontSize = 0.7f * UNIT;
+        private const float SupplierCompanyFontSize = 0.6f * UNIT;
         private const float GrossWeightAndBoxFontSize = 0.6f * UNIT;
-        private const float PartNumberFontSize = 1.1f * UNIT;
-        private const float QuantityFontSize = 1.1f * UNIT;
+        private const float PartNumberFontSize = 1.3f * UNIT;
+        private const float QuantityFontSize = 1.3f * UNIT;
         private const float DescriptionFontSize = 0.5f * UNIT;
         private const float SupplierCodeFontSize = 0.5f * UNIT;
-        private const float LogisticsReferenceFontSize = 0.48f * UNIT;
+        private const float LogisticsReferenceFontSize = 0.7f * UNIT;
         //Date of manufacture, shipment or expire date
         private const float ShipmentFontSize = 0.5f * UNIT;
         private const float ChangeNumberFontSize = 0.5f * UNIT;
@@ -111,7 +111,8 @@ namespace ProductLableGeneration
 
         public void Excecute(string path, List<Label> list)
         {
-            var doc = new Document(PageSize.A4);
+            var doc = new Document(PageSize.A4, 0.5f, 0.5f, 0, 0);
+
             var output = new FileStream(path, FileMode.Create);
             var writer = PdfWriter.GetInstance(doc, output);
             Font labelBraceFont = FontFactory.GetFont("Verdana", 7f, Font.BOLD);
@@ -128,14 +129,14 @@ namespace ProductLableGeneration
                 var imagePartNumberPDF417Code = GeneratePDF417BarCode(cb, label.Product.PartNumber + "P");
 
                 var table1 = new PdfPTable(2);
-                table1.SpacingBefore = 10;
+                table1.SpacingBefore = 0;
                 if (i % 2 != 0)
                 {
-                    table1.SpacingBefore = 40;
+                    table1.SpacingBefore = 5;
                 }
                 table1.DefaultCell.Border = 0;
                 table1.WidthPercentage = 100;
-                table1.DefaultCell.FixedHeight = HEIGHTFORTABLE1;
+                //table1.DefaultCell.FixedHeight = Heightfortable1;
 
 
                 var cell11 = new PdfPCell();
@@ -260,7 +261,7 @@ namespace ProductLableGeneration
                 var table2 = new PdfPTable(12);
                 table2.DefaultCell.Border = 0;
                 table2.WidthPercentage = 100.2f;
-                table2.DefaultCell.FixedHeight = HEIGHTFORTABLE2;
+                //table2.DefaultCell.FixedHeight = Heightfortable2;
                 var cell31 = new PdfPCell();
                 cell31.BorderWidthTop = 0;
                 cell31.BorderWidthBottom = 0;
@@ -280,9 +281,9 @@ namespace ProductLableGeneration
                 p = new Paragraph(label.Product.PartNumber,
                     FontFactory.GetFont("Helvetica", PartNumberFontSize, BaseColor.BLACK));
                 p.IndentationLeft = -7;
-                p.SpacingAfter = 0;
+                p.SpacingAfter = 10;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.8f);
+                p.SetLeading(0, 1.1f);
                 cell31.VerticalAlignment = Element.ALIGN_LEFT;
                 cell31.AddElement(p);
                 table2.AddCell(cell31);
@@ -318,7 +319,7 @@ namespace ProductLableGeneration
                 var table3 = new PdfPTable(2);
                 table3.DefaultCell.Border = 0;
                 table3.WidthPercentage = 100;
-                table3.DefaultCell.FixedHeight = HEIGHTFORTABLE3;
+                //table3.DefaultCell.FixedHeight = Heightfortable3;
                 var innerTable41 = new PdfPTable(2);
                 var cell41_1 = new PdfPCell();
                 cell41_1.PaddingLeft = 10f;
@@ -335,9 +336,9 @@ namespace ProductLableGeneration
                 cell41_1.AddElement(p);
                 p = new Paragraph(label.FixedQuantity,
                     FontFactory.GetFont("Helvetica", QuantityFontSize, BaseColor.BLACK));
-                p.SpacingAfter = 0;
+                p.SpacingAfter = 10;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.8f);
+                p.SetLeading(0, 1.1f);
                 cell41_1.AddElement(p);
                 innerTable41.AddCell(cell41_1);
                 var cell41_2 = new PdfPCell();
