@@ -40,6 +40,20 @@ namespace ProductLableGeneration
         private const float SerialNumberFontSize = 0.5f * UNIT;
         private const float BatchNumberFontSize = 0.5f * UNIT;
 
+        private const float ReceiverLeading = 1f;
+        private const float DockLeading = 1f;
+        private const float SupplierAddressLeading = 1f;
+        private const float NetLeading = 1f;
+        private const float PartNumberLeading = 1.1f;
+        private const float QuantityNumberLeading = 1.1f;
+        private const float SupplierLeading = 1f;
+        private const float SerialNumberLeading = 1f;
+        private const float DescriptionLeading = 1f;
+        private const float LoginsticReferenceLeading = 1f;
+        private const float DateLeading = 1f;
+        private const float EngineerLeading = 1f;
+
+
 
         public void Excecute()
         {
@@ -132,7 +146,7 @@ namespace ProductLableGeneration
                 table1.SpacingBefore = 0;
                 if (i % 2 != 0)
                 {
-                    table1.SpacingBefore = 5;
+                    table1.SpacingBefore = 15;
                 }
                 table1.DefaultCell.Border = 0;
                 table1.WidthPercentage = 100;
@@ -149,7 +163,7 @@ namespace ProductLableGeneration
                     FontFactory.GetFont("Helvetica", ReceiverFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.8f);
+                p.SetLeading(0, ReceiverLeading);
                 cell11.VerticalAlignment = Element.ALIGN_LEFT;
                 cell11.AddElement(p);
                 table1.AddCell(cell11);
@@ -166,7 +180,7 @@ namespace ProductLableGeneration
                     FontFactory.GetFont("Helvetica", DockGateFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.8f);
+                p.SetLeading(0, DockLeading);
                 cell12.AddElement(p);
                 cell12.VerticalAlignment = Element.ALIGN_LEFT;
                 table1.AddCell(cell12);
@@ -201,7 +215,7 @@ namespace ProductLableGeneration
                 p = new Paragraph(label.Product.SupplierAddress,
                     FontFactory.GetFont("Helvetica", SupplierCompanyFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 0;
-                p.SetLeading(0, 0.8f);
+                p.SetLeading(0, SupplierAddressLeading);
                 cell22_11.VerticalAlignment = Element.ALIGN_LEFT;
                 cell22_11.AddElement(p);
                 innerTable.AddCell(cell22_11);
@@ -217,7 +231,7 @@ namespace ProductLableGeneration
                     FontFactory.GetFont("Helvetica", GrossWeightAndBoxFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.8f);
+                p.SetLeading(0, NetLeading);
                 cell22_21.VerticalAlignment = Element.ALIGN_LEFT;
                 cell22_21.AddElement(p);
                 innerTable.AddCell(cell22_21);
@@ -233,7 +247,7 @@ namespace ProductLableGeneration
                     FontFactory.GetFont("Helvetica", GrossWeightAndBoxFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.8f);
+                p.SetLeading(0, NetLeading);
                 cell22_22.VerticalAlignment = Element.ALIGN_LEFT;
                 cell22_22.AddElement(p);
                 innerTable.AddCell(cell22_22);
@@ -249,7 +263,7 @@ namespace ProductLableGeneration
                     FontFactory.GetFont("Helvetica", GrossWeightAndBoxFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 0.8f);
+                p.SetLeading(0, NetLeading);
                 cell22_23.VerticalAlignment = Element.ALIGN_LEFT;
                 cell22_23.AddElement(p);
                 innerTable.AddCell(cell22_23);
@@ -283,7 +297,7 @@ namespace ProductLableGeneration
                 p.IndentationLeft = -7;
                 p.SpacingAfter = 10;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 1.1f);
+                p.SetLeading(0, PartNumberLeading);
                 cell31.VerticalAlignment = Element.ALIGN_LEFT;
                 cell31.AddElement(p);
                 table2.AddCell(cell31);
@@ -295,7 +309,7 @@ namespace ProductLableGeneration
                 cell32.BorderWidthBottom = 0;
                 cell32.Colspan = 3;
                 cell32.Rowspan = 1;
-                cell32.PaddingTop = 10f;
+                cell32.PaddingTop = 25f;
                 cell32.PaddingLeft = -25f;
                 cell32.HorizontalAlignment = Element.ALIGN_LEFT;
                 cell32.AddElement(imagePartNumberPDF417Code);
@@ -306,7 +320,7 @@ namespace ProductLableGeneration
                 cell33.BorderWidthBottom = 0;
                 cell33.Colspan = 2;
                 cell33.Rowspan = 1;
-                cell33.PaddingTop = 2;
+                cell33.PaddingTop = 22;
                 Image logo = GenerateLogo();
                 logo.IndentationLeft = 5;
                 logo.Alignment = Image.ALIGN_CENTER;
@@ -338,7 +352,7 @@ namespace ProductLableGeneration
                     FontFactory.GetFont("Helvetica", QuantityFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 10;
                 p.SpacingBefore = 0;
-                p.SetLeading(0, 1.1f);
+                p.SetLeading(0, QuantityNumberLeading);
                 cell41_1.AddElement(p);
                 innerTable41.AddCell(cell41_1);
                 var cell41_2 = new PdfPCell();
@@ -366,7 +380,7 @@ namespace ProductLableGeneration
                 p = new Paragraph(label.Product.Description,
                     FontFactory.GetFont("Helvetica", DescriptionFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 0;
-                p.SetLeading(0, 0.8f);
+                p.SetLeading(0, DescriptionLeading);
                 p.SpacingBefore = -3;
                 cell42_1.VerticalAlignment = Element.ALIGN_LEFT;
                 cell42_1.AddElement(p);
@@ -386,7 +400,7 @@ namespace ProductLableGeneration
                 cell42_2.AddElement(p);
                 p = new Paragraph(label.LogisticRefer, FontFactory.GetFont("Helvetica", LogisticsReferenceFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 0;
-                p.SetLeading(0, 0.8f);
+                p.SetLeading(0, LoginsticReferenceLeading);
                 p.SpacingAfter = 0;
 
                 cell42_2.VerticalAlignment = Element.ALIGN_LEFT;
@@ -404,7 +418,7 @@ namespace ProductLableGeneration
                 p = new Paragraph(label.Date, FontFactory.GetFont("Helvetica", ShipmentFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 1;
                 cell42_3.VerticalAlignment = Element.ALIGN_LEFT;
-                p.SetLeading(0, 0.8f);
+                p.SetLeading(0, DateLeading);
                 cell42_3.AddElement(p);
                 interTable42.AddCell(cell42_3);
                 var cell42_32 = new PdfPCell();
@@ -419,7 +433,7 @@ namespace ProductLableGeneration
                 p = new Paragraph(label.Product.EngineeringChange,
                     FontFactory.GetFont("Helvetica", ChangeNumberFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 1;
-                p.SetLeading(0, 0.8f);
+                p.SetLeading(0, EngineerLeading);
                 cell42_32.VerticalAlignment = Element.ALIGN_LEFT;
                 cell42_32.AddElement(p);
                 interTable42.AddCell(cell42_32);
@@ -439,7 +453,7 @@ namespace ProductLableGeneration
                 p.IndentationLeft = 0f;
                 cell42_4.AddElement(p);
                 cell42_4.VerticalAlignment = Element.ALIGN_LEFT;
-                p = new Paragraph(label.BatchNumber, FontFactory.GetFont("Helvetica", BatchNumberFontSize, BaseColor.BLACK));
+                p = new Paragraph("\r\n\r\n\r\n" + label.BatchNumber, FontFactory.GetFont("Helvetica", BatchNumberFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 0;
                 p.SetLeading(0, 0.8f);
                 p.IndentationLeft = 150f;
@@ -465,10 +479,10 @@ namespace ProductLableGeneration
                 p.SpacingBefore = 0;
                 p.SetLeading(0, 1.0f);
                 A_Left_1.AddElement(p);
-                p = new Paragraph(label.Product.SupplierCode,
+                p = new Paragraph("\r\n" +label.Product.SupplierCode,
                     FontFactory.GetFont("Helvetica", SupplierCodeFontSize, BaseColor.BLACK));
-                p.SpacingAfter = 10;
-                p.SetLeading(0, 0.8f);
+                p.SpacingAfter = 0;
+                p.SetLeading(0, SupplierLeading);
                 A_Left_1.AddElement(p);
                 innerTableA_Left.AddCell(A_Left_1);
                 var A_Left_2 = new PdfPCell();
@@ -482,9 +496,9 @@ namespace ProductLableGeneration
                 p.SpacingBefore = 0;
                 p.SetLeading(0, 1.0f);
                 A_Left_2.AddElement(p);
-                p = new Paragraph("S"+label.SerialNumber, FontFactory.GetFont("Helvetica", SerialNumberFontSize, BaseColor.BLACK));
+                p = new Paragraph("\r\n" + "S" +label.SerialNumber, FontFactory.GetFont("Helvetica", SerialNumberFontSize, BaseColor.BLACK));
                 p.SpacingAfter = 0;
-                p.SetLeading(0, 1f);
+                p.SetLeading(0, SerialNumberLeading);
                 A_Left_2.AddElement(p);
                 innerTableA_Left.AddCell(A_Left_2);
                 var cellA_Left = new PdfPCell(innerTableA_Left);
